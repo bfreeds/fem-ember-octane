@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, fillIn, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | login-form', function(hooks) {
@@ -24,6 +24,15 @@ module('Integration | Component | login-form', function(hooks) {
         ]
       );
 
+    // test the conditional button state
+    let button = find('input[type=submit]');
 
+    //button is disabled to start
+    assert.equal(button.disabled, true);
+    
+    await fillIn('select', '1');
+
+    //button is enabled
+    assert.equal(button.disabled, false);
   });
 });
