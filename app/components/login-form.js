@@ -1,6 +1,8 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
+import AuthService from 'shlack/services/auth'
 
 export default class LoginFormComponent extends Component {
 
@@ -8,13 +10,15 @@ export default class LoginFormComponent extends Component {
   @tracked // Octane 1-way data binding.  This opts in to listen to changes
   userId = null;
 
+  /**
+   * @type {AuthService}
+   */
+  @service
+  auth
+
   // javascript getter for derived state
   get isDisabled() {
     return !this.userId;
-  }
-
-  loginAsUserId(val) {
-    console.log('UserID: ', val)
   }
 
   /**
@@ -34,7 +38,7 @@ export default class LoginFormComponent extends Component {
     const { target } = event;
     const val = target.querySelector('select').value;
     event.preventDefault();
-    
-    this.loginAsUserId(val);
+    debugger;
+    this.auth.loginWithUserId(val);
   }
 }
