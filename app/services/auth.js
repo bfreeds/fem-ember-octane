@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 import Router from '@ember/routing/router';
 
 const AUTH_KEY='schlack-userid';
@@ -18,5 +19,11 @@ export default class AuthService extends Service {
   loginWithUserId(userId) {
     window.localStorage.setItem(AUTH_KEY, userId);
     this.router.transitionTo('teams');
+  }
+
+  @action
+  logout() {
+    window.localStorage.removeItem(AUTH_KEY);
+    this.router.transitionTo('login');
   }
 }
