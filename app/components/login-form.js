@@ -8,6 +8,11 @@ export default class LoginFormComponent extends Component {
   @tracked // Octane 1-way data binding.  This opts in to listen to changes
   userId = null;
 
+  // javascript getter for derived state
+  get isDisabled() {
+    return !this.userId;
+  }
+
   loginAsUserId(val) {
     console.log('UserID: ', val)
   }

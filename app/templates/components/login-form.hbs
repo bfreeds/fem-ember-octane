@@ -22,10 +22,13 @@
           </div>
         </div>
         <p class="text-blue text-xs italic my-4">
-          Logging in as userId {{this.userId}}
+          {{#if (not this.isDisabled)}}
+            Logging in as userId {{this.userId}}
+          {{/if}}
         </p>
         <div class="flex items-center justify-between">
-          <input class="bg-grey text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          <input class="{{if this.isDisabled "bg-grey" "bg-teal-dark"}} text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            disabled={{this.isDisabled}}
             value="Sign In" type="submit" />
         </div>
       </form>
