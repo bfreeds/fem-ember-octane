@@ -15,14 +15,23 @@ module('Integration | Component | team-sidebar', function(hooks) {
     const auth = this.owner.lookup('service:auth');
     auth.currentUserId = '1';
 
-    await render(hbs`<TeamSidebar />`);
+    this.set('myTeam', {
+      name: '',
+      channels: [
+        {
+          name: 'general',
+        },
+      ],
+    });
+
+    await render(hbs`<TeamSidebar @team={{this.myTeam}}/>`);
 
     assert.deepEqual(
       this.element.textContent
         .trim()
         .replace(/\s*\n+\s*/g, '\n')
         .split('\n'),
-      ['LinkedIn', 'Mike North', 'Channels', '#', 'general', 'Logout']
+      ['Mike North', 'Channels', '#', 'general', 'Logout']
     );
   });
 });

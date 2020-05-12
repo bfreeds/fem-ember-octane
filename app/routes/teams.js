@@ -1,13 +1,14 @@
 import Route from '@ember/routing/route';
-import {inject as service} from '@ember/service';
+import { inject as service } from '@ember/service';
 import AuthService from 'shlack/services/auth';
+import fetch from 'fetch';
 
 export default class TeamsRoute extends Route {
   /**
-   * 
+   *
    * @type {AuthService}
    */
-  @service auth
+  @service auth;
 
   async beforeModel(transition) {
     await super.beforeModel(transition);
@@ -15,5 +16,12 @@ export default class TeamsRoute extends Route {
     if (!this.auth.currentUserId) {
       this.transitionTo('login');
     }
+  }
+
+  async model() {
+    const response = await fetch('/api/teams');
+
+    // returns a promise
+    return response.json();
   }
 }
