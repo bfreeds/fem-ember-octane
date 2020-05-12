@@ -36,6 +36,7 @@ export default class ChatContainerComponent extends Component {
       channel: { id: channelId, teamId },
     } = this.args;
 
+    const userId = this.auth.currentUserId;
     const response = await fetch('/api/messages', {
       method: 'POST',
       headers: {
@@ -44,9 +45,15 @@ export default class ChatContainerComponent extends Component {
       body: JSON.stringify({
         teamId,
         channelId,
-        userId: this.auth.currentUserId,
+        userId,
         body,
       }),
     });
+
+    if (!response.ok) throw Error('Could not save chat message');
+    const messageData = await response.json();
+    const user = await fetch(`/api/users/${userId}`);
+
+    this.messages = [...this.messages, { ...messageData, user }];
   }
 }
