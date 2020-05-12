@@ -1,13 +1,13 @@
 <!-- Channel -->
-<main class="flex-1 flex flex-col bg-white overflow-hidden channel">
-
+<ChatContainer @channel={{this.model}} as |messages|>
+  {{log messages}}
   <ChannelHeader @title={{this.model.name}} @description={{this.model.description}} />
-
 
   <!-- Channel Message List -->
   <div class="py-4 flex-1 overflow-y-scroll channel-messages-list" role="list">
-    <Message />
+    {{#each messages as |message|}}
+    <Message @message={{message}} {{/each}}></Message>
   </div>
-
   <ChannelFooter />
-</main>
+
+</ChatContainer>
