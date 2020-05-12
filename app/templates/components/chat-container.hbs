@@ -1,4 +1,7 @@
 <main class="flex-1 flex flex-col bg-white overflow-hidden channel" {{did-insert this.loadMessages}}
   {{did-update this.loadMessages @channel}}>
-  {{yield this.messages}}
+  {{yield this.messages (hash
+    createMessage=this.createMessage
+    )
+  }}
 </main>

@@ -1,5 +1,5 @@
 <!-- Channel -->
-<ChatContainer @channel={{this.model}} as |messages|>
+<ChatContainer @channel={{this.model}} as |messages channelApi|>
   {{log messages}}
   <ChannelHeader @title={{this.model.name}} @description={{this.model.description}} />
 
@@ -9,6 +9,6 @@
     <Message @message={{message}}></Message>
     {{/each}}
   </div>
-  <ChannelFooter />
+  <ChannelFooter @sendMessage={{channelApi.createMessage}} />
 
 </ChatContainer>
