@@ -1,7 +1,7 @@
 <!-- Channel -->
 <main class="flex-1 flex flex-col bg-white overflow-hidden channel">
 
-  <ChannelHeader @title="general" @description="Just some general people generally chatting about general things" />
+  <ChannelHeader @title={{this.model.name}} @description={{this.model.description}} />
 
 
   <!-- Channel Message List -->
