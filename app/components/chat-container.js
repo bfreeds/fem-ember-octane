@@ -20,6 +20,6 @@ export default class ChatContainerComponent extends Component {
     // don't push to array, replace with new array to ensure tracked responds
     // include the existing messages, add new messages
     // note we aren't deduping these messages
-    this.messages = [...this.messages, ...(await response.json())];
+    this.messages = [...(await response.json())];
   }
 }
