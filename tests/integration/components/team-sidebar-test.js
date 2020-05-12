@@ -22,7 +22,7 @@ module('Integration | Component | team-sidebar', function(hooks) {
         .trim()
         .replace(/\s*\n+\s*/g, '\n')
         .split('\n'),
-      ['LinkedIn', 'Mike North', 'Channels', '#', 'general', 'Logout']
+      ['Mike North', 'Channels', '#', 'general', 'Logout']
     );
   });
 });
