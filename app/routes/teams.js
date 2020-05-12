@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import AuthService from 'shlack/services/auth';
 
-const ALL_TEAMS = [
+export const ALL_TEAMS = [
   {
     id: 'linkedin',
     name: 'LinkedIn',
